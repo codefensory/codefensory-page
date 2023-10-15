@@ -1,12 +1,16 @@
 ---
 import CardProfile from "../components/CardProfile.astro";
 import StackIcons from "../components/StackIcons.astro";
+import { BACKENDS_ICONS, FRONTEND_ICONS } from "../utils/constants.ts";
 ---
 
-<div class="absolute top-[15%] left-1/2 -translate-x-1/2">
-  <CardProfile />
+<div class="absolute w-full top-[340px] -translate-y-1/2">
+  <StackIcons icons={BACKENDS_ICONS} />
+  <div class="mt-8">
+    <StackIcons icons={FRONTEND_ICONS} forward />
+  </div>
 </div>
 
-<div>
-  <StackIcons />
+<div class="absolute top-[106px] left-1/2 -translate-x-1/2">
+  <CardProfile />
 </div>

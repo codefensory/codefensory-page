@@ -1,92 +1,93 @@
-<div class="slider">
-  <div class="slide-track">
-    <div class="slide">
-      <img src="/portfolio/icons/node.svg" alt="" />
-    </div>
-    <div class="slide">
-      <img src="/portfolio/icons/apollo.svg" alt="" />
-    </div>
-    <div class="slide">
-      <img src="/portfolio/icons/apollo.svg" alt="" />
-    </div>
-    <div class="slide">
-      <img src="/portfolio/icons/apollo.svg" alt="" />
-    </div>
-    <div class="slide">
-      <img src="/portfolio/icons/apollo.svg" alt="" />
-    </div>
-    <div class="slide">
-      <img src="/portfolio/icons/apollo.svg" alt="" />
-    </div>
-    <div class="slide">
-      <img src="/portfolio/icons/apollo.svg" alt="" />
+---
+interface Props {
+  icons: { src: string; w: string; h: string; alt?: string }[];
+  forward?: boolean;
+}
+
+const { icons, forward } = Astro.props;
+---
+
+<slider-component forward={forward}>
+  <div class="w-full overflow-hidden">
+    <div class="slider gap-16" style={{ display: "-webkit-inline-box" }}>
+      <div class="slider-track w-auto flex gap-16">
+        {
+          icons.map((icon) => (
+            <div class="m-auto" style={{ width: icon.w + "px", height: icon.h + "px" }}>
+              <img
+                class="w-full h-full"
+                src={icon.src}
+                width={icon.w}
+                height={icon.h}
+                alt={icon.alt ?? ""}
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
-</div>
+</slider-component>
 
 <style>
-  @-webkit-keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-120px * 7));
-    }
+  :host {
+    --slider-start-x-pos: 0;
+    --slider-end-x-pos: 0;
   }
 
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
+  @keyframes sliderAnim {
+    from {
+      transform: translateX(var(--slider-start-x-pos));
     }
-    100% {
-      transform: translateX(calc(-120px * 7));
+    to {
+      transform: translateX(var(--slider-end-x-pos));
     }
   }
 
   .slider {
-    background: white;
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
-    height: 100px;
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
-
-  .slider::before,
-  .slider::after {
-    content: "";
-    height: 100px;
-    position: absolute;
-    width: 200px;
-    z-index: 2;
-  }
-
-  .slider::after {
-    right: 0;
-    top: 0;
-    transform: rotateZ(180deg);
-  }
-
-  .slider::before {
-    left: 0;
-    top: 0;
-  }
-
-  .slider .slide-track {
-    -webkit-animation: scroll 5s linear infinite;
-    animation: scroll 5s linear infinite;
-    display: flex;
-    width: calc(120px * 14);
-  }
-
-  .slider .slide {
-    height: 120px;
-    width: 120px;
-  }
-
-  .slide > img {
-    width: auto;
-    height: 70%;
+    animation-name: sliderAnim;
+    animation-duration: 25s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 </style>
+
+<script>
+  customElements.define(
+    "slider-component",
+    class extends HTMLElement {
+      constructor() {
+        super();
+
+        const slider = this.querySelector(".slider");
+
+        const sliderTrack = this.querySelector(".slider-track");
+
+        if (!slider || !sliderTrack) {
+          throw new Error("dont exist");
+        }
+
+        const to = "0";
+
+        const from = -sliderTrack.clientWidth - 64 + "px";
+
+        const forward = this.hasAttribute("forward");
+
+        this.style.setProperty("--slider-end-x-pos", forward ? to : from);
+
+        this.style.setProperty("--slider-start-x-pos", forward ? from : to);
+
+        const cloneCount =
+          1 +
+          Math.round(
+            (window.innerWidth - sliderTrack.clientWidth) /
+              sliderTrack.clientWidth
+          );
+
+        for (let i = 0; i < cloneCount; i++) {
+          slider.appendChild(sliderTrack.cloneNode(true));
+        }
+      }
+    }
+  );
+</script>
