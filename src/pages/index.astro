@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import PortfolioPage from "../modules/portfolio/pages/PortfolioPage.astro";
+---
+
+<Layout title="Codefensory">
+  <div
+    class="absolute z-[-1] w-full h-full top-0 right-0 bg-[url(./Background.svg)] opacity-[22%]"
+    style={{ backgroundSize: "416px" }}
+  >
+  </div>
+  <main class="w-[100vw] h-[100vh]">
+    <PortfolioPage />
+  </main>
+</Layout>

@@ -1,0 +1,60 @@
+---
+import MainHeader from "./Header/MainHeader.astro"
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <MainHeader />
+    <div>
+      <slot />
+    </div>
+  </body>
+</html>
+<style is:global>
+  @font-face {
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-Regular.ttf");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-Bold.ttf");
+    font-weight: bold;
+  }
+
+  @font-face {
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-Black.ttf");
+    font-weight: 900;
+  }
+
+  @font-face {
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-ExtraBold.ttf");
+    font-weight: 800;
+  }
+
+  * {
+    font-family: "Poppins";
+  }
+
+  body {
+    background-color: #F4F0EB;
+  }
+</style>
