@@ -6,7 +6,6 @@ import solidJs from "@astrojs/solid-js";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), solidJs()],
-  site: "https://codefensory.github.io",
-  base: "/codefensory-page",
+  site: "https://www.codefensory.com",
 });
 
