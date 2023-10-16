@@ -7,5 +7,6 @@ import solidJs from "@astrojs/solid-js";
 export default defineConfig({
   integrations: [tailwind(), solidJs()],
   site: "https://codefensory.github.io",
+  base: "/codefensory-page",
 });
 
