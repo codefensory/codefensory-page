@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         fox: "#DF7251",
         elegant: "#4E233E",
+        vintage: "#C2B1A0",
       },
     },
   },

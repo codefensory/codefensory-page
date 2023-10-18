@@ -9,11 +9,17 @@ const { icons, forward } = Astro.props;
 
 <slider-component forward={forward}>
   <div class="w-full overflow-hidden">
-    <div class="slider gap-16" style={{ display: "-webkit-inline-box" }}>
+    <div
+      class="slider gap-16"
+      style={{ display: "-webkit-inline-box", opacity: 0 }}
+    >
       <div class="slider-track w-auto flex gap-16">
         {
           icons.map((icon) => (
-            <div class="m-auto" style={{ width: icon.w + "px", height: icon.h + "px" }}>
+            <div
+              class="m-auto"
+              style={{ width: icon.w + "px", height: icon.h + "px" }}
+            >
               <img
                 class="w-full h-full"
                 src={icon.src}
@@ -87,6 +93,8 @@ const { icons, forward } = Astro.props;
         for (let i = 0; i < cloneCount; i++) {
           slider.appendChild(sliderTrack.cloneNode(true));
         }
+
+        slider.style.opacity = 1;
       }
     }
   );
