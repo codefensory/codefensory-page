@@ -10,14 +10,14 @@ const { icons, forward } = Astro.props;
 <slider-component forward={forward}>
   <div class="w-full overflow-hidden">
     <div
-      class="slider gap-16"
+      class="slider gap-6 sm:gap-16"
       style={{ display: "-webkit-inline-box", opacity: 0 }}
     >
-      <div class="slider-track w-auto flex gap-16">
+      <div class="slider-track w-auto flex gap-6 sm:gap-16">
         {
           icons.map((icon) => (
             <div
-              class="m-auto"
+              class="m-auto max-sm:scale-75"
               style={{ width: icon.w + "px", height: icon.h + "px" }}
             >
               <img
@@ -75,7 +75,9 @@ const { icons, forward } = Astro.props;
 
         const to = "0";
 
-        const from = -sliderTrack.clientWidth - 64 + "px";
+        const isMobile = window.innerWidth <= 640
+
+        const from = -sliderTrack.clientWidth - (isMobile ? 24 : 64) + "px";
 
         const forward = this.hasAttribute("forward");
 
@@ -85,7 +87,7 @@ const { icons, forward } = Astro.props;
 
         const cloneCount =
           1 +
-          Math.round(
+          Math.ceil(
             (window.innerWidth - sliderTrack.clientWidth) /
               sliderTrack.clientWidth
           );

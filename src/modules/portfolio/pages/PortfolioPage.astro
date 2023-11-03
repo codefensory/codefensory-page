@@ -4,31 +4,35 @@ import StackIcons from "../components/StackIcons.astro";
 import { BACKENDS_ICONS, FRONTEND_ICONS } from "../utils/constants.ts";
 ---
 
-<div class="absolute w-full top-[340px] -translate-y-1/2">
+<div class="absolute w-full top-[160px] sm:top-[230px] 2xl:top-[340px] -translate-y-1/2">
   <StackIcons icons={BACKENDS_ICONS} />
-  <div class="mt-8">
+  <div class="mt-2 sm:mt-8">
     <StackIcons icons={FRONTEND_ICONS} forward />
   </div>
 </div>
 
-<div class="absolute top-[106px] left-1/2 -translate-x-1/2">
+<div class="absolute top-[180px] sm:top-[60px] 2xl:top-[106px] left-1/2 -translate-x-1/2">
   <CardProfile />
 </div>
 
 <div
-  class="absolute w-full text-center bottom-[13%] left-1/2 -translate-x-1/2 space-y-1"
+  class="absolute w-full text-center bottom-[13%] 2xl:bottom-[13%] left-1/2 -translate-x-1/2 sm:space-y-1"
 >
-  <h4 class="text-elegant font-extrabold text-4xl">Full Stack</h4>
-  <h4 class="text-elegant font-extrabold text-4xl">Web Developer</h4>
+  <h4 class="text-elegant font-extrabold text-3xl sm:text-4xl">Full Stack</h4>
+  <h4 class="text-elegant font-extrabold text-3xl sm:text-4xl">Web Developer</h4>
   <h4 class="text-vintage font-bold text-xl">Effective Web Solutions</h4>
 </div>
 
-<div class="absolute text-center left-[7%] top-[560px] -translate-y-1/2">
+<div
+  class="absolute max-md:hidden text-center left-[7%] top-[460px] 2xl:top-[560px] -translate-y-1/2"
+>
   <h4 class="text-vintage font-extrabold text-4xl">Pixel</h4>
   <h4 class="text-vintage font-extrabold text-4xl">Perfectionist</h4>
 </div>
 
-<div class="absolute text-center right-[7%] top-[560px] -translate-y-1/2">
+<div
+  class="absolute max-md:hidden text-center right-[7%] top-[460px] 2xl:top-[560px] -translate-y-1/2"
+>
   <h4 class="text-vintage font-extrabold text-4xl">UI/UX</h4>
   <h4 class="text-vintage font-extrabold text-4xl">Alchemist</h4>
 </div>
